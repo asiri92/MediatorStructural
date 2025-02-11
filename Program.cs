@@ -1,10 +1,30 @@
-﻿using Canonical_Mediator.Structural;
+﻿using Canonical_Mediator.ChatApp;
+using Canonical_Mediator.Structural;
 
 namespace Canonical_Mediator
 {
     internal class Program
     {
         static void Main(string[] args)
+        {
+            var teamChat = new TeamChatRoom();
+
+            var steve = new Developer("Steve");
+            var justin = new Developer("Justin");
+            var jenna = new Developer("Jenna");
+            var brian = new Tester("Brian");
+            var amanda = new Tester("Amanda");
+            teamChat.RegisterMembers(steve, justin, jenna, brian, amanda);
+
+            steve.Send("Hey, everyone! I just pushed a new feature.");
+            brian.Send("Roger that, Steve. I'll test it now.");
+
+            Console.WriteLine();
+            steve.SendTo <Developer>("Make sure to execute your unit tests before checking in!");
+
+        }
+
+        private static void StructuralExample()
         {
             var mediator = new ConcreateMediator();
 
